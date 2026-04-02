@@ -1,0 +1,564 @@
+﻿<!DOCTYPE html><html class="dark" lang="vi"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>GPHAT | Về Chúng Tôi</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,300;0,400;0,700;1,300&family=Manrope:wght@200;300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "tertiary-fixed-dim": "#474747",
+              "on-tertiary-fixed-variant": "#e2e2e2",
+              "secondary-fixed": "#c8c6c5",
+              "on-secondary-fixed-variant": "#3c3b3b",
+              "secondary-fixed-dim": "#adabaa",
+              "on-error-container": "#ffdad6",
+              "on-primary": "#1a1c1c",
+              "outline-variant": "#474747",
+              "surface-container": "#1f1f1f",
+              "on-tertiary": "#1b1b1b",
+              "surface-container-lowest": "#0e0e0e",
+              "tertiary-fixed": "#5e5e5e",
+              "on-tertiary-container": "#000000",
+              "surface-variant": "#353535",
+              "on-secondary-fixed": "#1c1b1b",
+              "inverse-surface": "#e2e2e2",
+              "surface-bright": "#393939",
+              "on-error": "#690005",
+              "surface": "#131313",
+              "on-primary-container": "#000000",
+              "on-tertiary-fixed": "#ffffff",
+              "primary-container": "#d4d4d4",
+              "secondary": "#c8c6c5",
+              "secondary-container": "#474746",
+              "inverse-primary": "#5d5f5f",
+              "tertiary": "#e2e2e2",
+              "on-primary-fixed-variant": "#e2e2e2",
+              "surface-container-highest": "#353535",
+              "primary-fixed": "#5d5f5f",
+              "outline": "#919191",
+              "on-surface-variant": "#c6c6c6",
+              "surface-container-high": "#2a2a2a",
+              "surface-container-low": "#1b1b1b",
+              "inverse-on-surface": "#303030",
+              "primary": "#ffffff",
+              "surface-dim": "#131313",
+              "on-background": "#e2e2e2",
+              "on-primary-fixed": "#ffffff",
+              "surface-tint": "#c6c6c7",
+              "error": "#ffb4ab",
+              "background": "#131313",
+              "on-secondary": "#1c1b1b",
+              "on-surface": "#e2e2e2",
+              "primary-fixed-dim": "#454747",
+              "tertiary-container": "#919191",
+              "error-container": "#93000a",
+              "on-secondary-container": "#e5e2e1"
+            },
+            fontFamily: {
+              "headline": ["Noto Serif"],
+              "body": ["Manrope"],
+              "label": ["Manrope"]
+            },
+            borderRadius: {"DEFAULT": "0px", "lg": "0px", "xl": "0px", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+    .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 0, 'opsz' 24;
+    }
+    body {
+        background-color: #131313;
+        color: #e2e2e2;
+        overflow-x: hidden;
+    }
+    .hero-gradient {
+        background: linear-gradient(to bottom, rgba(19, 19, 19, 0) 60%, rgba(19, 19, 19, 1) 100%);
+    }
+
+    /* ===== PAGE LOAD ANIMATION ===== */
+    .page-loader {
+        position: fixed;
+        inset: 0;
+        background: #0a0a0a;
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: opacity 0.8s cubic-bezier(0.65, 0, 0.35, 1), visibility 0.8s;
+    }
+    .page-loader.loaded {
+        opacity: 0;
+        visibility: hidden;
+    }
+    .loader-logo {
+        font-family: 'Noto Serif', serif;
+        font-style: italic;
+        font-size: 3rem;
+        color: white;
+        letter-spacing: 0.2em;
+        animation: loaderPulse 1.5s ease-in-out infinite;
+    }
+    @keyframes loaderPulse {
+        0%, 100% { opacity: 0.3; transform: scale(0.98); }
+        50% { opacity: 1; transform: scale(1); }
+    }
+
+    /* ===== SCROLL REVEAL ANIMATIONS ===== */
+    .reveal {
+        opacity: 0;
+        transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.active {
+        opacity: 1;
+    }
+    .reveal-up {
+        transform: translateY(80px);
+    }
+    .reveal-up.active {
+        transform: translateY(0);
+    }
+    .reveal-left {
+        transform: translateX(-80px);
+    }
+    .reveal-left.active {
+        transform: translateX(0);
+    }
+    .reveal-right {
+        transform: translateX(80px);
+    }
+    .reveal-right.active {
+        transform: translateX(0);
+    }
+    .reveal-scale {
+        transform: scale(0.9);
+    }
+    .reveal-scale.active {
+        transform: scale(1);
+    }
+    .reveal-rotate {
+        transform: perspective(1000px) rotateY(5deg);
+    }
+    .reveal-rotate.active {
+        transform: perspective(1000px) rotateY(0deg);
+    }
+
+    /* Stagger delays */
+    .delay-1 { transition-delay: 0.1s; }
+    .delay-2 { transition-delay: 0.2s; }
+    .delay-3 { transition-delay: 0.3s; }
+    .delay-4 { transition-delay: 0.4s; }
+    .delay-5 { transition-delay: 0.5s; }
+    .delay-6 { transition-delay: 0.6s; }
+
+    /* ===== TEXT SPLIT ANIMATION ===== */
+    .split-text .char {
+        display: inline-block;
+        opacity: 0;
+        transform: translateY(40px) rotateX(-40deg);
+        transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .split-text.active .char {
+        opacity: 1;
+        transform: translateY(0) rotateX(0);
+    }
+
+    /* ===== LINE REVEAL ===== */
+    .line-reveal {
+        position: relative;
+        overflow: hidden;
+    }
+    .line-reveal::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #131313;
+        transform: translateX(0);
+        transition: transform 1.2s cubic-bezier(0.65, 0, 0.35, 1);
+    }
+    .line-reveal.active::after {
+        transform: translateX(101%);
+    }
+
+    /* ===== IMAGE PARALLAX ===== */
+    .parallax-img {
+        transition: transform 0.1s linear;
+        will-change: transform;
+    }
+
+    /* ===== MAGNETIC BUTTON ===== */
+    .magnetic-btn {
+        transition: transform 0.3s cubic-bezier(0.33, 1, 0.68, 1);
+    }
+
+    /* ===== GLOW LINE ===== */
+    .glow-line {
+        position: relative;
+        overflow: hidden;
+    }
+    .glow-line::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 60%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+        animation: glowSlide 4s ease-in-out infinite;
+    }
+    @keyframes glowSlide {
+        0% { left: -60%; }
+        50% { left: 100%; }
+        100% { left: 100%; }
+    }
+
+    /* ===== FLOATING PARTICLES ===== */
+    .particle {
+        position: fixed;
+        width: 2px;
+        height: 2px;
+        background: rgba(255, 255, 255, 0.15);
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 1;
+    }
+
+    /* ===== CURSOR FOLLOWER ===== */
+    .cursor-glow {
+        position: fixed;
+        width: 300px;
+        height: 300px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 70%);
+        pointer-events: none;
+        z-index: 0;
+        transform: translate(-50%, -50%);
+        transition: all 0.3s ease;
+    }
+
+    /* ===== HERO TEXT CLIP ===== */
+    .hero-title-word {
+        display: inline-block;
+        overflow: hidden;
+    }
+    .hero-title-word span {
+        display: inline-block;
+        transform: translateY(110%);
+        animation: heroWordReveal 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    @keyframes heroWordReveal {
+        to { transform: translateY(0); }
+    }
+
+    /* ===== NAV SCROLL ===== */
+    nav {
+        transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    nav.scrolled {
+        padding-top: 1rem !important;
+        padding-bottom: 1rem !important;
+        background: rgba(10, 10, 10, 0.95) !important;
+    }
+
+    /* ===== SMOOTH SCROLL ===== */
+    html {
+        scroll-behavior: smooth;
+    }
+
+    /* ===== IMAGE REVEAL MASK ===== */
+    .img-reveal {
+        position: relative;
+        overflow: hidden;
+    }
+    .img-reveal::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: #131313;
+        z-index: 2;
+        transform: scaleX(1);
+        transform-origin: right;
+        transition: transform 1.4s cubic-bezier(0.65, 0, 0.35, 1);
+    }
+    .img-reveal.active::before {
+        transform: scaleX(0);
+    }
+
+    /* ===== COUNTER ANIMATION ===== */
+    .counter-value {
+        display: inline-block;
+    }
+
+    /* ===== BORDER DRAW ===== */
+    .border-draw {
+        position: relative;
+    }
+    .border-draw::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 0;
+        height: 1px;
+        background: rgba(255,255,255,0.3);
+        transition: width 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .border-draw.active::before {
+        width: 100%;
+    }
+
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: #131313; }
+    ::-webkit-scrollbar-thumb { background: #353535; }
+</style>
+</head>
+<body class="antialiased">
+
+<!-- Page Loader -->
+<div class="page-loader" id="pageLoader">
+    <div class="loader-logo">GPHAT</div>
+</div>
+
+<!-- Cursor Glow -->
+<div class="cursor-glow" id="cursorGlow"></div>
+
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-neutral-900/70 backdrop-blur-xl">
+<div class="flex justify-between items-center w-full px-12 py-8 mx-auto max-w-[1920px]">
+<a href="index.html" class="text-3xl font-['Noto_Serif'] italic font-light tracking-widest text-white uppercase">GPHAT</a>
+<div class="hidden md:flex items-center gap-12">
+<a class="font-['Noto_Serif'] tracking-[0.05em] uppercase text-xs text-white border-b border-white/40 pb-1 scale-100 active:scale-95 transition-all duration-500 ease-in-out" href="about.html">Về Chúng Tôi</a>
+<a class="font-['Noto_Serif'] tracking-[0.05em] uppercase text-xs text-white/60 hover:text-white transition-all duration-500 ease-in-out" href="products.html">Sản Phẩm</a>
+<a class="font-['Noto_Serif'] tracking-[0.05em] uppercase text-xs text-white/60 hover:text-white transition-all duration-500 ease-in-out" href="showroom.html">Online Showroom</a>
+<a class="font-['Noto_Serif'] tracking-[0.05em] uppercase text-xs text-white/60 hover:text-white transition-all duration-500 ease-in-out" href="technology.html">Công Nghệ</a>
+<a class="font-['Noto_Serif'] tracking-[0.05em] uppercase text-xs text-white/60 hover:text-white transition-all duration-500 ease-in-out" href="contact.html">Liên Hệ</a>
+</div>
+<div class="flex items-center gap-6">
+<span class="material-symbols-outlined text-white cursor-pointer hover:opacity-70 transition-opacity">person</span>
+<span class="material-symbols-outlined text-white cursor-pointer hover:opacity-70 transition-opacity">shopping_bag</span>
+</div>
+</div>
+</nav>
+
+<!-- Main Content Canvas -->
+<main class="min-h-screen">
+<!-- Hero Section -->
+<section class="relative h-screen w-full overflow-hidden">
+<img alt="Gpon Luxury Showroom" class="absolute inset-0 w-full h-full object-cover grayscale brightness-50 parallax-img" id="heroImg" src="https://i.pinimg.com/736x/82/dd/68/82dd68ccae3aa5c2769c501cb785083d.jpg">
+<div class="absolute inset-0 hero-gradient"></div>
+<div class="relative z-10 h-full flex flex-col justify-end px-12 pb-24 max-w-[1920px] mx-auto">
+<p class="font-body text-sm tracking-[0.3em] uppercase text-white/60 mb-6 reveal reveal-up" style="transition-delay: 0.8s">Di Sản &amp; Tầm Nhìn</p>
+<h1 class="font-headline italic text-6xl md:text-8xl font-light text-white leading-tight max-w-4xl">
+    <span class="hero-title-word"><span style="animation-delay: 1s">Khí</span></span>
+    <span class="hero-title-word"><span style="animation-delay: 1.15s">Chất</span></span>&nbsp;
+    <div>
+        <span class="hero-title-word"><span style="animation-delay: 1.3s">Kẻ</span></span>
+        <span class="hero-title-word"><span style="animation-delay: 1.45s">Dẫn</span></span>
+        <span class="hero-title-word"><span style="animation-delay: 1.6s">Đầu</span></span>
+    </div>
+</h1>
+</div>
+<!-- Scroll Indicator -->
+<div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 reveal reveal-up" style="transition-delay: 1.8s">
+    <span class="text-[10px] uppercase tracking-[0.3em] text-white/40">Cuộn xuống</span>
+    <div class="w-[1px] h-12 bg-white/20 relative overflow-hidden">
+        <div class="w-full h-1/2 bg-white/60 absolute top-0 animate-bounce"></div>
+    </div>
+</div>
+</section>
+
+<!-- Brand Story Section -->
+<section class="py-32 px-12 max-w-[1920px] mx-auto grid grid-cols-1 md:grid-cols-12 gap-16">
+<div class="md:col-span-5 flex flex-col justify-center">
+<h2 class="font-headline text-4xl mb-12 text-white reveal reveal-up">Câu Chuyện Thương Hiệu</h2>
+<div class="space-y-8 font-body text-on-surface-variant leading-relaxed text-lg font-light tracking-wide">
+<p class="reveal reveal-up delay-2">Khởi đầu từ khát vọng kiến tạo nên chiếc ô tô đầu tiên của nhân loại cùng triết lý "Tốt nhất hoặc không có gì", Mercedes-Benz không chỉ là một thương hiệu xe hơi; đó là một biểu tượng của lối sống tinh hoa.</p>
+<p class="reveal reveal-up delay-3">Chúng tôi tin rằng sự sang trọng thực sự không nằm ở những hào nhoáng phô trương, mà ngự trị trong sự tĩnh lặng đầy quyền uy của những cỗ máy tiên phong, nơi di sản vượt thời gian hòa quyện cùng nghệ thuật cơ khí đỉnh cao.</p>
+</div>
+</div>
+<div class="md:col-span-7">
+<div class="aspect-[16/9] bg-surface-container-low overflow-hidden img-reveal reveal reveal-scale">
+<img alt="Mechanical Detail" class="w-full h-full object-cover grayscale opacity-80 hover:scale-105 transition-transform duration-1000" src="https://admin.vov.gov.vn/UploadFolder/KhoTin/Images/UploadFolder/VOVVN/Images/sites/default/files/styles/large/public/2023-08/g63-9.png.jpg">
+</div>
+</div>
+</section>
+
+<!-- Values Bento Grid -->
+<section class="py-32 px-12 bg-surface-container-lowest">
+<div class="max-w-[1920px] mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-1">
+<!-- Value 1 -->
+<div class="bg-surface p-16 flex flex-col aspect-square justify-between border-r border-b border-white/5 reveal reveal-up delay-1">
+<span class="text-4xl font-headline italic text-white/20">01</span>
+<div>
+<h3 class="font-headline text-2xl text-white mb-4 italic">Kỹ Nghệ Thủ Công</h3>
+<p class="font-body text-sm text-on-surface-variant tracking-wider leading-loose">Mỗi chi tiết nội thất được chế tác tỉ mỉ bởi các bậc thầy nghệ nhân, sử dụng chất liệu da Nappa thượng hạng để kiến tạo nên một không gian xa xỉ mang đậm dấu ấn cá nhân hóa MANUFAKTUR.</p>
+</div>
+</div>
+<!-- Value 2 -->
+<div class="bg-surface p-16 flex flex-col aspect-square justify-between border-b border-white/5 reveal reveal-up delay-3">
+<span class="text-4xl font-headline italic text-white/20">02</span>
+<div>
+<h3 class="font-headline text-2xl text-white mb-4 italic">Hiệu Suất Vượt Trội</h3>
+<p class="font-body text-sm text-on-surface-variant tracking-wider leading-loose">Hệ truyền động được tinh chỉnh để giải phóng sức mạnh tức thời trong sự êm ái tuyệt đối. Một trải nghiệm lái tĩnh lặng ngoạn mục, nơi chỉ còn lại sự hiện diện của uy quyền tối thượng.</p>
+</div>
+</div>
+<!-- Value 3 -->
+<div class="bg-surface p-16 flex flex-col aspect-square justify-between border-l border-b border-white/5 reveal reveal-up delay-5">
+<span class="text-4xl font-headline italic text-white/20">03</span>
+<div>
+<h3 class="font-headline text-2xl text-white mb-4 italic">Triết Lý Thiết Kế</h3>
+<p class="font-body text-sm text-on-surface-variant tracking-wider leading-loose">Ngôn ngữ thiết kế "Sensual Purity" loại bỏ mọi đường nét dư thừa để tôn vinh vẻ đẹp khí động học thuần khiết. Mercedes-Benz là bản hòa ca hoàn mỹ giữa công nghệ vị lai và di sản vượt thời gian.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Quote Section -->
+<section class="py-48 px-12 text-center max-w-4xl mx-auto">
+<span class="material-symbols-outlined text-white/40 text-5xl mb-8 reveal reveal-scale">format_quote</span>
+<p class="font-headline italic text-3xl md:text-5xl text-white leading-tight font-light reveal reveal-up delay-2">"Chúng tôi không chế tạo xe hơi để di chuyển. Chúng tôi chế tạo xe hơi để thay đổi cách bạn cảm nhận về sự tự do."</p>
+<div class="mt-12 h-[1px] w-24 bg-white/20 mx-auto border-draw reveal delay-4"></div>
+<p class="mt-8 font-body text-xs tracking-[0.4em] uppercase text-on-surface-variant reveal reveal-up delay-5">Nhà Sáng Lập Gphat</p>
+</section>
+
+<!-- Full Width Visual -->
+<section class="h-[716px] w-full overflow-hidden reveal reveal-scale">
+<img alt="Luxury Drive" class="w-full h-full object-cover grayscale contrast-125 parallax-img hover:scale-105 transition-transform duration-[2000ms]" id="bottomImg" src="https://i.pinimg.com/1200x/0d/19/90/0d1990130694f79d5002d2ce287acc89.jpg">
+</section>
+</main>
+
+<!-- Footer -->
+<footer class="bg-neutral-900 w-full border-t border-white/5">
+<div class="flex flex-col md:flex-row justify-between items-center w-full px-12 py-16 gap-8 mx-auto max-w-[1920px]">
+<a href="index.html" class="text-xl font-['Noto_Serif'] italic tracking-tighter text-white reveal reveal-left">GPHAT</a>
+<div class="flex flex-wrap justify-center gap-8">
+<a class="font-['Manrope'] font-light tracking-[0.1em] text-[10px] uppercase text-white/40 hover:text-white transition-colors duration-300 reveal reveal-up delay-1" href="#">Chính sách bảo mật</a>
+<a class="font-['Manrope'] font-light tracking-[0.1em] text-[10px] uppercase text-white/40 hover:text-white transition-colors duration-300 reveal reveal-up delay-2" href="#">Điều khoản sử dụng</a>
+<a class="font-['Manrope'] font-light tracking-[0.1em] text-[10px] uppercase text-white/40 hover:text-white transition-colors duration-300 reveal reveal-up delay-3" href="#">Hệ thống đại lý</a>
+<a class="font-['Manrope'] font-light tracking-[0.1em] text-[10px] uppercase text-white/40 hover:text-white transition-colors duration-300 reveal reveal-up delay-4" href="#">Tuyển dụng</a>
+</div>
+<p class="font-['Manrope'] font-light tracking-[0.1em] text-[10px] uppercase text-white/40 reveal reveal-right">© 2026 Gphat Sự Quyền Uy Tĩnh Lặng.</p>
+</div>
+</footer>
+
+<script>
+// ===== PAGE LOADER =====
+window.addEventListener('load', () => {
+    setTimeout(() => {
+        document.getElementById('pageLoader').classList.add('loaded');
+    }, 800);
+});
+
+// ===== CURSOR GLOW =====
+const cursorGlow = document.getElementById('cursorGlow');
+document.addEventListener('mousemove', (e) => {
+    cursorGlow.style.left = e.clientX + 'px';
+    cursorGlow.style.top = e.clientY + 'px';
+});
+
+// ===== SCROLL REVEAL =====
+const revealElements = document.querySelectorAll('.reveal');
+const imgRevealElements = document.querySelectorAll('.img-reveal');
+const borderDrawElements = document.querySelectorAll('.border-draw');
+
+const revealOnScroll = () => {
+    const windowHeight = window.innerHeight;
+    const revealPoint = 100;
+
+    revealElements.forEach(el => {
+        const top = el.getBoundingClientRect().top;
+        if (top < windowHeight - revealPoint) {
+            el.classList.add('active');
+        }
+    });
+
+    imgRevealElements.forEach(el => {
+        const top = el.getBoundingClientRect().top;
+        if (top < windowHeight - revealPoint) {
+            el.classList.add('active');
+        }
+    });
+
+    borderDrawElements.forEach(el => {
+        const top = el.getBoundingClientRect().top;
+        if (top < windowHeight - revealPoint) {
+            el.classList.add('active');
+        }
+    });
+};
+
+window.addEventListener('scroll', revealOnScroll);
+window.addEventListener('load', () => setTimeout(revealOnScroll, 1000));
+
+// ===== PARALLAX EFFECT =====
+const heroImg = document.getElementById('heroImg');
+const bottomImg = document.getElementById('bottomImg');
+
+window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
+
+    if (heroImg) {
+        heroImg.style.transform = `translateY(${scrollY * 0.3}px) scale(1.1)`;
+    }
+
+    if (bottomImg) {
+        const rect = bottomImg.getBoundingClientRect();
+        if (rect.top < window.innerHeight && rect.bottom > 0) {
+            const offset = (window.innerHeight - rect.top) * 0.1;
+            bottomImg.style.transform = `translateY(${-offset}px) scale(1.05)`;
+        }
+    }
+});
+
+// ===== NAVBAR SCROLL =====
+const nav = document.querySelector('nav');
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 100) {
+        nav.classList.add('scrolled');
+    } else {
+        nav.classList.remove('scrolled');
+    }
+});
+
+// ===== FLOATING PARTICLES =====
+function createParticles() {
+    const body = document.body;
+    for (let i = 0; i < 30; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = Math.random() * 100 + 'vw';
+        particle.style.top = Math.random() * 100 + 'vh';
+        particle.style.animationDuration = (Math.random() * 20 + 10) + 's';
+        particle.style.opacity = Math.random() * 0.3;
+        particle.style.width = (Math.random() * 3 + 1) + 'px';
+        particle.style.height = particle.style.width;
+
+        const keyframes = [
+            { transform: `translate(0, 0)`, opacity: 0 },
+            { transform: `translate(${Math.random() * 200 - 100}px, ${-Math.random() * 500 - 200}px)`, opacity: parseFloat(particle.style.opacity) },
+            { transform: `translate(${Math.random() * 400 - 200}px, ${-Math.random() * 1000 - 400}px)`, opacity: 0 }
+        ];
+
+        particle.animate(keyframes, {
+            duration: (Math.random() * 20000 + 15000),
+            iterations: Infinity,
+            delay: Math.random() * 5000
+        });
+
+        body.appendChild(particle);
+    }
+}
+createParticles();
+</script>
+</body></html>

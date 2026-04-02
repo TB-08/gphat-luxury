@@ -1,0 +1,465 @@
+﻿<!DOCTYPE html><html class="dark" lang="vi"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>GPHAT | Online Showroom</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,300;0,400;0,700;1,300&family=Manrope:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "tertiary-fixed-dim": "#474747","on-tertiary-fixed-variant": "#e2e2e2",
+                        "secondary-fixed": "#c8c6c5","on-secondary-fixed-variant": "#3c3b3b",
+                        "secondary-fixed-dim": "#adabaa","on-error-container": "#ffdad6",
+                        "on-primary": "#1a1c1c","outline-variant": "#474747",
+                        "surface-container": "#1f1f1f","on-tertiary": "#1b1b1b",
+                        "surface-container-lowest": "#0e0e0e","tertiary-fixed": "#5e5e5e",
+                        "on-tertiary-container": "#000000","surface-variant": "#353535",
+                        "on-secondary-fixed": "#1c1b1b","inverse-surface": "#e2e2e2",
+                        "surface-bright": "#393939","on-error": "#690005",
+                        "surface": "#131313","on-primary-container": "#000000",
+                        "on-tertiary-fixed": "#ffffff","primary-container": "#d4d4d4",
+                        "secondary": "#c8c6c5","secondary-container": "#474746",
+                        "inverse-primary": "#5d5f5f","tertiary": "#e2e2e2",
+                        "on-primary-fixed-variant": "#e2e2e2","surface-container-highest": "#353535",
+                        "primary-fixed": "#5d5f5f","outline": "#919191",
+                        "on-surface-variant": "#c6c6c6","surface-container-high": "#2a2a2a",
+                        "surface-container-low": "#1b1b1b","inverse-on-surface": "#303030",
+                        "primary": "#ffffff","surface-dim": "#131313",
+                        "on-background": "#e2e2e2","on-primary-fixed": "#ffffff",
+                        "surface-tint": "#c6c6c7","error": "#ffb4ab",
+                        "background": "#131313","on-secondary": "#1c1b1b",
+                        "on-surface": "#e2e2e2","primary-fixed-dim": "#454747",
+                        "tertiary-container": "#919191","error-container": "#93000a",
+                        "on-secondary-container": "#e5e2e1"
+                    },
+                    fontFamily: { "headline": ["Noto Serif"], "body": ["Manrope"], "label": ["Manrope"] },
+                    borderRadius: {"DEFAULT": "0px", "lg": "0px", "xl": "0px", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+    .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 0, 'opsz' 24; }
+    body { background-color: #131313; color: #e2e2e2; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    .hide-scrollbar::-webkit-scrollbar { display: none; }
+    .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+    /* PAGE LOADER */
+    .page-loader {
+        position: fixed; inset: 0; background: #0a0a0a; z-index: 9999;
+        display: flex; align-items: center; justify-content: center;
+        transition: opacity 0.8s cubic-bezier(0.65, 0, 0.35, 1), visibility 0.8s;
+    }
+    .page-loader.loaded { opacity: 0; visibility: hidden; }
+    .loader-logo {
+        font-family: 'Noto Serif', serif; font-style: italic; font-size: 3rem;
+        color: white; letter-spacing: 0.2em;
+        animation: loaderPulse 1.5s ease-in-out infinite;
+    }
+    @keyframes loaderPulse {
+        0%, 100% { opacity: 0.3; transform: scale(0.98); }
+        50% { opacity: 1; transform: scale(1); }
+    }
+
+    /* SCROLL REVEAL */
+    .reveal { opacity: 0; transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1); }
+    .reveal.active { opacity: 1; }
+    .reveal-up { transform: translateY(80px); }
+    .reveal-up.active { transform: translateY(0); }
+    .reveal-left { transform: translateX(-80px); }
+    .reveal-left.active { transform: translateX(0); }
+    .reveal-right { transform: translateX(80px); }
+    .reveal-right.active { transform: translateX(0); }
+    .reveal-scale { transform: scale(0.9); }
+    .reveal-scale.active { transform: scale(1); }
+
+    .delay-1 { transition-delay: 0.1s; }
+    .delay-2 { transition-delay: 0.2s; }
+    .delay-3 { transition-delay: 0.3s; }
+    .delay-4 { transition-delay: 0.4s; }
+    .delay-5 { transition-delay: 0.5s; }
+    .delay-6 { transition-delay: 0.6s; }
+
+    /* HERO TEXT */
+    .hero-title-word { display: inline-block; overflow: hidden; }
+    .hero-title-word span {
+        display: inline-block; transform: translateY(110%);
+        animation: heroWordReveal 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    @keyframes heroWordReveal { to { transform: translateY(0); } }
+
+    /* IMAGE REVEAL */
+    .img-reveal { position: relative; overflow: hidden; }
+    .img-reveal::before {
+        content: ''; position: absolute; inset: 0; background: #131313; z-index: 2;
+        transform: scaleX(1); transform-origin: right;
+        transition: transform 1.4s cubic-bezier(0.65, 0, 0.35, 1);
+    }
+    .img-reveal.active::before { transform: scaleX(0); }
+
+    /* CURSOR GLOW */
+    .cursor-glow {
+        position: fixed; width: 300px; height: 300px; border-radius: 50%;
+        background: radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 70%);
+        pointer-events: none; z-index: 0; transform: translate(-50%, -50%); transition: all 0.3s ease;
+    }
+
+    /* NAV SCROLL */
+    nav { transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+    nav.scrolled { padding-top: 1rem !important; padding-bottom: 1rem !important; background: rgba(10, 10, 10, 0.95) !important; }
+
+    /* PARALLAX */
+    .parallax-hero { transition: transform 0.1s linear; will-change: transform; }
+
+    /* COUNTER */
+    .counter-value { display: inline-block; }
+
+    /* GALLERY CARD */
+    .gallery-card {
+        transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .gallery-card:hover {
+        transform: translateY(-8px);
+    }
+    .gallery-card img {
+        transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), filter 1s ease;
+    }
+    .gallery-card:hover img {
+        transform: scale(1.08);
+        filter: grayscale(0%);
+    }
+
+    /* FEATURE LIST ITEM */
+    .feature-item {
+        position: relative;
+        padding-left: 24px;
+    }
+    .feature-item::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 50%;
+        width: 8px;
+        height: 8px;
+        background: white;
+        transform: translateY(-50%) scale(0);
+        transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .feature-item.active::before {
+        transform: translateY(-50%) scale(1);
+    }
+
+    /* PARTICLE */
+    .particle {
+        position: fixed; width: 2px; height: 2px;
+        background: rgba(255, 255, 255, 0.15);
+        border-radius: 50%; pointer-events: none; z-index: 1;
+    }
+
+    /* MAGNETIC */
+    .magnetic-btn { transition: transform 0.3s cubic-bezier(0.33, 1, 0.68, 1); }
+
+    /* GLOW LINE */
+    .glow-line { position: relative; overflow: hidden; }
+    .glow-line::before {
+        content: ''; position: absolute; top: 0; left: -100%; width: 60%; height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+        animation: glowSlide 4s ease-in-out infinite;
+    }
+    @keyframes glowSlide { 0% { left: -60%; } 50% { left: 100%; } 100% { left: 100%; } }
+
+    html { scroll-behavior: smooth; }
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: #131313; }
+    ::-webkit-scrollbar-thumb { background: #353535; }
+</style>
+</head>
+<body class="font-body">
+
+<!-- Page Loader -->
+<div class="page-loader" id="pageLoader">
+    <div class="loader-logo">GPHAT</div>
+</div>
+
+<!-- Cursor Glow -->
+<div class="cursor-glow" id="cursorGlow"></div>
+
+<!-- Top Navigation Bar -->
+<nav class="bg-neutral-900/70 backdrop-blur-xl fixed top-0 w-full z-50">
+<div class="flex justify-between items-center w-full px-12 py-8 mx-auto max-w-[1920px]">
+<a href="index.html" class="text-3xl font-['Noto_Serif'] italic font-light tracking-widest text-white uppercase">GPHAT</a>
+<div class="hidden md:flex gap-12 items-center">
+<a class="font-['Noto_Serif'] tracking-[0.05em] uppercase text-xs text-white/60 hover:text-white transition-all duration-500 ease-in-out" href="about.html">Về Chúng Tôi</a>
+<a class="font-['Noto_Serif'] tracking-[0.05em] uppercase text-xs text-white/60 hover:text-white transition-all duration-500 ease-in-out" href="products.html">Sản Phẩm</a>
+<a class="font-['Noto_Serif'] tracking-[0.05em] uppercase text-xs text-white border-b border-white/40 pb-1" href="showroom.html">Online Showroom</a>
+<a class="font-['Noto_Serif'] tracking-[0.05em] uppercase text-xs text-white/60 hover:text-white transition-all duration-500 ease-in-out" href="technology.html">Công Nghệ</a>
+<a class="font-['Noto_Serif'] tracking-[0.05em] uppercase text-xs text-white/60 hover:text-white transition-all duration-500 ease-in-out" href="contact.html">Liên Hệ</a>
+</div>
+<div class="flex gap-6 items-center text-white">
+<button class="scale-100 active:scale-95 transition-transform"><span class="material-symbols-outlined">person</span></button>
+<button class="scale-100 active:scale-95 transition-transform"><span class="material-symbols-outlined">shopping_bag</span></button>
+</div>
+</div>
+</nav>
+<main class="pt-32">
+
+<!-- Hero Section: Immersive Showroom View -->
+<section class="px-12 mb-32">
+<div class="relative w-full aspect-[21/9] bg-surface-container-low overflow-hidden">
+<img class="w-full h-full object-cover opacity-80 grayscale parallax-hero" id="heroImg" src="https://i.pinimg.com/1200x/0c/f5/c8/0cf5c8717f2b6a58098174832b64c48d.jpg">
+<!-- Interactive Overlay -->
+<div class="absolute inset-0 flex flex-col justify-between p-12 bg-gradient-to-t from-surface via-transparent to-transparent">
+<div class="max-w-2xl">
+<span class="font-label text-[10px] uppercase tracking-[0.3em] text-white/50 mb-4 block reveal reveal-up" style="transition-delay: 0.6s">BIỂU TƯỢNG TỐC ĐỘ</span>
+<h1 class="font-headline text-6xl md:text-8xl font-light italic text-white tracking-tighter leading-tight mb-8">
+    <span class="hero-title-word"><span style="animation-delay: 0.8s">The</span></span>
+    <span class="hero-title-word"><span style="animation-delay: 0.95s">Night</span></span>
+    <span class="hero-title-word"><span style="animation-delay: 1.1s">Hunter</span></span>
+</h1>
+<p class="font-body text-on-surface-variant max-w-md text-sm leading-relaxed tracking-wide reveal reveal-up" style="transition-delay: 1.3s">
+    Giải phóng uy lực từ khối động cơ V8 thủ công. Khám phá sự tĩnh lặng đầy quyền năng trong diện mạo của một tuyệt tác hiệu suất tối thượng.
+</p>
+</div>
+<div class="flex items-end justify-between">
+<div class="flex gap-4 reveal reveal-up" style="transition-delay: 1.5s">
+<button class="px-8 py-4 bg-primary text-on-primary text-[10px] uppercase tracking-widest font-bold hover:bg-on-surface transition-colors duration-500 magnetic-btn hover:shadow-[0_0_40px_rgba(255,255,255,0.15)]">
+    BẮT ĐẦU TRẢI NGHIỆM 360°
+</button>
+<button class="px-8 py-4 bg-white/10 backdrop-blur-md text-white text-[10px] uppercase tracking-widest font-bold hover:bg-white/20 transition-colors duration-500 magnetic-btn">
+    CẤU HÌNH XE
+</button>
+</div>
+<div class="flex flex-col items-end gap-2 reveal reveal-right" style="transition-delay: 1.6s">
+<span class="font-headline italic text-2xl text-white">Exterieur 01</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Product Details: Bento Grid style -->
+<section class="px-12 mb-48">
+<div class="grid grid-cols-12 gap-12">
+<!-- Large Feature Card -->
+<div class="col-span-12 md:col-span-8 bg-surface-container-low p-16 relative overflow-hidden group reveal reveal-left glow-line">
+<div class="relative z-10">
+<h2 class="font-headline text-4xl italic font-light text-white mb-6 reveal reveal-up delay-1">Thánh Đường Tĩnh Lặng</h2>
+<p class="font-body text-on-surface-variant max-w-sm mb-12 text-sm leading-relaxed reveal reveal-up delay-2">
+    Da Nappa đen tuyền hòa quyện cùng sợi Carbon mờ, kiến tạo nên một không gian tách biệt hoàn toàn với thế giới bên ngoài. Nơi sự tĩnh lặng là đặc quyền của người dẫn đầu.
+</p>
+<ul class="space-y-4">
+<li class="flex items-center gap-4 group/item cursor-pointer feature-item reveal reveal-left delay-3">
+<span class="text-[10px] uppercase tracking-widest text-white/60 group-hover/item:text-white transition-colors">HÀNG GHẾ THỂ THAO AMG PERFORMANCE</span>
+</li>
+<li class="flex items-center gap-4 group/item cursor-pointer feature-item reveal reveal-left delay-4">
+<span class="text-[10px] uppercase tracking-widest text-white/60 group-hover/item:text-white transition-colors">HỆ THỐNG ÂM THANH BURMESTER® HIGH-END</span>
+</li>
+<li class="flex items-center gap-4 group/item cursor-pointer feature-item reveal reveal-left delay-5">
+<span class="text-[10px] uppercase tracking-widest text-white/60 group-hover/item:text-white transition-colors">CÔNG NGHỆ CÁ NHÂN HÓA MANUFAKTUR</span>
+</li>
+</ul>
+</div>
+<img class="absolute right-0 top-0 h-full w-1/2 object-cover grayscale opacity-40 group-hover:opacity-60 group-hover:scale-105 transition-all duration-1000" src="https://i.pinimg.com/736x/3d/6d/bc/3d6dbc3d10c8a67f0bd69538fdebf5ba.jpg">
+</div>
+
+<!-- Stats Vertical Column -->
+<div class="col-span-12 md:col-span-4 flex flex-col justify-between py-8">
+<div>
+<div class="mb-12 reveal reveal-right delay-1">
+<span class="text-4xl md:text-6xl font-headline italic font-light text-white counter-value" data-target="3.2" data-suffix="s" data-decimal="true">0s</span>
+<p class="text-[10px] uppercase tracking-widest text-on-surface-variant mt-2">0 - 100 KM/H</p>
+</div>
+<div class="mb-12 reveal reveal-right delay-2">
+<span class="text-4xl md:text-6xl font-headline italic font-light text-white counter-value" data-target="639" data-suffix=" HP">0 HP</span>
+<p class="text-[10px] uppercase tracking-widest text-on-surface-variant mt-2">Công Suất Cực Đại</p>
+</div>
+<div class="reveal reveal-right delay-3">
+<span class="text-4xl md:text-6xl font-headline italic font-light text-white counter-value" data-target="900" data-suffix=" Nm">0 Nm</span>
+<p class="text-[10px] uppercase tracking-widest text-on-surface-variant mt-2">MÔ-MEN XOẮN CỰC ĐẠI</p>
+</div>
+</div>
+<div class="pt-12 border-t border-white/10 reveal reveal-up delay-4">
+<p class="font-body italic text-sm text-on-surface-variant leading-relaxed">
+    "Mọi chi tiết thừa đều bị loại bỏ, để lại duy nhất cảm giác lái thuần khiết và quyền năng áp đảo."
+</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Horizontal Scroll Gallery -->
+<section class="mb-48">
+<div class="px-12 flex justify-between items-end mb-12">
+<div>
+<span class="font-label text-[10px] uppercase tracking-[0.3em] text-white/50 mb-2 block reveal reveal-up">Thư Viện Ảnh</span>
+<h2 class="font-headline text-5xl font-light italic text-white tracking-tighter reveal reveal-up delay-1">Kỹ Nghệ Tinh Xảo</h2>
+</div>
+<div class="flex gap-4 reveal reveal-right delay-2">
+<button class="w-12 h-12 flex items-center justify-center border border-white/20 hover:border-white hover:bg-white/5 transition-all duration-300" id="scrollLeft">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-12 h-12 flex items-center justify-center border border-white/20 hover:border-white hover:bg-white/5 transition-all duration-300" id="scrollRight">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+<div class="flex gap-8 overflow-x-auto hide-scrollbar px-12" id="galleryScroll">
+<div class="flex-none w-[450px] aspect-[3/4] bg-surface-container-low overflow-hidden gallery-card reveal reveal-up delay-1">
+<img class="w-full h-full object-cover grayscale" src="https://i.pinimg.com/1200x/02/f1/64/02f16465608fb49220fd2abc2b25c7ca.jpg">
+<div class="mt-4">
+<p class="text-[10px] uppercase tracking-widest text-white/60">Hệ Thống Đèn Matrix</p>
+</div>
+</div>
+<div class="flex-none w-[450px] aspect-[3/4] bg-surface-container-low overflow-hidden gallery-card reveal reveal-up delay-2">
+<img class="w-full h-full object-cover grayscale" src="https://i.pinimg.com/1200x/a6/d0/e5/a6d0e52753d8ddf1b775814d2810138c.jpg">
+<div class="mt-4">
+<p class="text-[10px] uppercase tracking-widest text-white/60">Vành Đúc Magnesium</p>
+</div>
+</div>
+<div class="flex-none w-[450px] aspect-[3/4] bg-surface-container-low overflow-hidden gallery-card reveal reveal-up delay-3">
+<img class="w-full h-full object-cover grayscale" src="https://i.pinimg.com/1200x/da/e7/84/dae78468f0f6db12932a5adbc6ab7ad8.jpg">
+<div class="mt-4">
+<p class="text-[10px] uppercase tracking-widest text-white/60">Khung Gầm Carbon-Fiber</p>
+</div>
+</div>
+<div class="flex-none w-[450px] aspect-[3/4] bg-surface-container-low overflow-hidden gallery-card reveal reveal-up delay-4">
+<img class="w-full h-full object-cover grayscale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAOHmrh8cC_sWS_st5BlklOez2TYC1yDyK082mPl4AdkvGyP6dTRVZck_8xFCmymLTxbn4Lxh7W7SdGXuyFcPAmE4nyYz-fj6Ex8zVi8vAON_OQjVRG8Y7jnYttO8R6KUHOKYTGkPDrdaNEIPONCeGv_ryn4xIP27Wc48DdO1OPzWkN_CCdsu-_G84sgxS5so9iw4eLnB7um4HmIflsZhYImc4OHSvclzlWGBdg5MlchFUCgmGajSzpLM1E6d_fQBUAptgsRDCtpLM">
+<div class="mt-4">
+<p class="text-[10px] uppercase tracking-widest text-white/60">Tay Lái Cảm Biến Haptic</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- CTA Section: Subscription -->
+<section class="px-12 mb-64 flex justify-center">
+<div class="max-w-4xl text-center">
+<h2 class="font-headline text-5xl md:text-7xl italic font-light text-white mb-12 tracking-tighter reveal reveal-up">
+    Làm Chủ Biểu Tượng
+</h2>
+<p class="font-body text-on-surface-variant text-base mb-16 max-w-xl mx-auto leading-relaxed reveal reveal-up delay-2">
+    Đặt lịch hẹn riêng tư để trực tiếp cảm nhận uy lực của Mercedes-AMG tại hệ thống showroom đặc quyền trên toàn quốc.
+</p>
+<div class="flex flex-col md:flex-row gap-4 justify-center items-center reveal reveal-up delay-3">
+<button class="w-full md:w-auto px-16 py-6 bg-primary text-on-primary text-[11px] uppercase tracking-[0.2em] font-extrabold hover:bg-neutral-200 transition-all duration-300 magnetic-btn hover:shadow-[0_0_60px_rgba(255,255,255,0.2)]">
+    ĐĂNG KÝ TRẢI NGHIỆM
+</button>
+<button class="w-full md:w-auto px-16 py-6 border border-white/20 text-white text-[11px] uppercase tracking-[0.2em] font-bold hover:bg-white/10 transition-all duration-300 magnetic-btn">
+    TẢI BROCHURE CHI TIẾT
+</button>
+</div>
+</div>
+</section>
+</main>
+
+<!-- Footer Component -->
+<footer class="bg-neutral-900 w-full border-t border-white/5">
+<div class="flex flex-col md:flex-row justify-between items-center w-full px-12 py-16 gap-8 mx-auto max-w-[1920px]">
+<a href="index.html" class="text-xl font-['Noto_Serif'] italic tracking-tighter text-white reveal reveal-left">GPHAT</a>
+<div class="flex flex-wrap justify-center gap-8">
+<a class="font-['Manrope'] font-light tracking-[0.1em] text-[10px] uppercase text-white/40 hover:text-white transition-colors duration-300 reveal reveal-up delay-1" href="#">Chính sách bảo mật</a>
+<a class="font-['Manrope'] font-light tracking-[0.1em] text-[10px] uppercase text-white/40 hover:text-white transition-colors duration-300 reveal reveal-up delay-2" href="#">Điều khoản sử dụng</a>
+<a class="font-['Manrope'] font-light tracking-[0.1em] text-[10px] uppercase text-white/40 hover:text-white transition-colors duration-300 reveal reveal-up delay-3" href="#">Hệ thống đại lý</a>
+<a class="font-['Manrope'] font-light tracking-[0.1em] text-[10px] uppercase text-white/40 hover:text-white transition-colors duration-300 reveal reveal-up delay-4" href="#">Tuyển dụng</a>
+</div>
+<div class="font-['Manrope'] font-light tracking-[0.1em] text-[10px] uppercase text-white/40 text-center md:text-right reveal reveal-right">© 2026 Gphat Sự Quyền Uy Tĩnh Lặng.</div>
+</div>
+</footer>
+
+<script>
+// PAGE LOADER
+window.addEventListener('load', () => {
+    setTimeout(() => document.getElementById('pageLoader').classList.add('loaded'), 600);
+});
+
+// CURSOR GLOW
+const cursorGlow = document.getElementById('cursorGlow');
+document.addEventListener('mousemove', (e) => {
+    cursorGlow.style.left = e.clientX + 'px';
+    cursorGlow.style.top = e.clientY + 'px';
+});
+
+// SCROLL REVEAL
+const revealOnScroll = () => {
+    const wh = window.innerHeight;
+    document.querySelectorAll('.reveal, .img-reveal, .feature-item').forEach(el => {
+        if (el.getBoundingClientRect().top < wh - 80) el.classList.add('active');
+    });
+};
+window.addEventListener('scroll', revealOnScroll);
+window.addEventListener('load', () => setTimeout(revealOnScroll, 800));
+
+// PARALLAX HERO
+const heroImg = document.getElementById('heroImg');
+window.addEventListener('scroll', () => {
+    if (heroImg) {
+        const scrollY = window.scrollY;
+        heroImg.style.transform = `translateY(${scrollY * 0.2}px) scale(1.1)`;
+    }
+});
+
+// COUNTER ANIMATION
+const counters = document.querySelectorAll('.counter-value');
+const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const el = entry.target;
+            const target = parseFloat(el.dataset.target);
+            const suffix = el.dataset.suffix || '';
+            const isDecimal = el.dataset.decimal === 'true';
+            let current = 0;
+            const increment = target / 50;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) { current = target; clearInterval(timer); }
+                el.textContent = (isDecimal ? current.toFixed(1) : Math.floor(current).toLocaleString()) + suffix;
+            }, 25);
+            counterObserver.unobserve(el);
+        }
+    });
+}, { threshold: 0.5 });
+counters.forEach(c => counterObserver.observe(c));
+
+// NAV SCROLL
+const nav = document.querySelector('nav');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 100));
+
+// GALLERY SCROLL BUTTONS
+const gallery = document.getElementById('galleryScroll');
+document.getElementById('scrollLeft').addEventListener('click', () => {
+    gallery.scrollBy({ left: -470, behavior: 'smooth' });
+});
+document.getElementById('scrollRight').addEventListener('click', () => {
+    gallery.scrollBy({ left: 470, behavior: 'smooth' });
+});
+
+// MAGNETIC BUTTONS
+document.querySelectorAll('.magnetic-btn').forEach(btn => {
+    btn.addEventListener('mousemove', (e) => {
+        const rect = btn.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        btn.style.transform = `translate(${x * 0.15}px, ${y * 0.15}px)`;
+    });
+    btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
+});
+
+// PARTICLES
+for (let i = 0; i < 25; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    p.style.left = Math.random() * 100 + 'vw';
+    p.style.top = Math.random() * 100 + 'vh';
+    p.animate([
+        { transform: 'translate(0, 0)', opacity: 0 },
+        { transform: `translate(${Math.random()*200-100}px, ${-Math.random()*600-200}px)`, opacity: Math.random()*0.3 },
+        { transform: `translate(${Math.random()*400-200}px, ${-Math.random()*1000-400}px)`, opacity: 0 }
+    ], { duration: Math.random()*20000+15000, iterations: Infinity, delay: Math.random()*5000 });
+    document.body.appendChild(p);
+}
+</script>
+</body></html>
